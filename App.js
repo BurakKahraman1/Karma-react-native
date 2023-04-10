@@ -6,8 +6,10 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import { GlobalStyles } from "./constants/style";
-import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "./screens/HomeScreen";
+import CustomButton from "./components/UI/Button";
+import { View } from "react-native";
+import LikeScreen from "./screens/LikesScreen";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -16,32 +18,38 @@ const HomeBottomNavigation = () => {
   return (
     <BottomTabs.Navigator
       screenOptions={() => ({
-        headerStyle: { backgroundColor: GlobalStyles.colors.primary1 },
-        headerTintColor: "white",
-        tabBarStyle: { backgroundColor: GlobalStyles.colors.primary1 },
-        tabBarActiveTintColor: GlobalStyles.colors.primary3,
+        headerTintColor: 'white',
+        tabBarStyle: { backgroundColor: 'white' },
+        tabBarActiveTintColor: GlobalStyles.colors.primary1,
+        headerShown:false,
+        tabBarShowLabel: false,
+        tabBarStyle:{height:70, justifyContent:'center', alignItems:'center'},
       })}
     >
       <BottomTabs.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          title: "Home",
-          tabBarLabel: "Home",
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="home" size={size} color={color} />
+          tabBarButton: (props) => (
+            <View style={{justifyContent:'center', marginHorizontal:12}}>
+            <CustomButton {...props} style={{width:160}} color='primary1'> Users </CustomButton>
+            </View>
           )
         }}
       />
       <BottomTabs.Screen
-        name="RegisterScreen"
-        component={RegisterScreen}
+        name="LikeScreen"
+        component={LikeScreen}
         options={{
-          title: "Register",
-          tabBarLabel: "Register",
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="person" size={size} color={color} />
-          )
+          title:'YOUR LIKES',
+          headerShown:true,
+          headerStyle:{backgroundColor:'#6f34ee'},
+          headerTitleAlign:'center',
+          tabBarButton: (props) => (
+            <View style={{justifyContent:'center', marginHorizontal:12}}>
+            <CustomButton {...props} style={{width:160}} color='primary4'> Likes </CustomButton>
+            </View>
+            )
         }}
       />
     </BottomTabs.Navigator>

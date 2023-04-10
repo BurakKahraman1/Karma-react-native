@@ -8,8 +8,8 @@ const CustomButton = ({ children, onPress, color, style }) => {
         onPress={onPress}
         style={({pressed}) => pressed && styles.pressed}
       >
-        <View style={[styles.button , color==='primary2' && styles.button, color==='primary1' && styles.button2, color==='primary3' && {backgroundColor:'white'} ]}>
-          <Text style={[styles.buttonText, color==='primary3'&& {color:'black'}]}>
+        <View style={[styles.button , color==='primary2' && styles.button, color==='primary1' && styles.button2, color==='primary3' && {backgroundColor:'white'}, color==='primary4' && {backgroundColor:GlobalStyles.colors.primary3} ]}>
+          <Text style={[styles.buttonText, color==='primary3'&& {color:'black'}, color==='primary4' && {color:'black'}]}>
             {children}
           </Text>
         </View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     justifyContent:'center',
-    fontSize:22,
+    fontSize:21,
   },
   pressed: {
     opacity: 0.6,
